@@ -1,0 +1,6 @@
+endpoint: ${env:PRISMA_ENDPOINT}
+datamodel: datamodel.prisma
+# secret: ${env:PRISMA_SECRET}
+hooks:
+  post-deploy: # get schema after deploy. can be viewed in ./src/generated/prisma.graphql.
+    - graphql get-schema -p prisma
