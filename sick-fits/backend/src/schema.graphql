@@ -1,0 +1,19 @@
+# This file defines the public facing API.
+# This is what we interface with with our frontend.
+
+# the line below imports all of our types from our datamodel. it is supposed to be commented out. it's weird.
+# import * from './generated/prisma.graphql'
+
+type Mutation {
+  createItem(
+    title: String,
+    description: String,
+    price: Int,
+    image: String,
+    largeImage: String
+  ): Item!
+}
+
+type Query {
+  items: [Item]!
+}
