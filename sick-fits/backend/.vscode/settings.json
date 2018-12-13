@@ -3,5 +3,5 @@
     "titleBar.activeBackground": "#FF2C70",
     "titleBar.inactiveBackground": "#FF2C70CC"
   },
-  "editor.fontLigatures": true
+  "editor.fontLigatures": true,
 }
