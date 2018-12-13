@@ -1,5 +1,19 @@
+# !Deploy to Prisma (npm run deploy) anytime the data model is changed.
+
 type User {
   id: ID! @unique
   name: String!
   email: String!
+}
+
+type Item {
+  id: ID! @unique
+  title: String!
+  description: String!
+  image: String
+  largeImage: String
+  price: Int!
+  # createdAt: DateTime!
+  # updatedAt: DateTime!
+  # user: User! # create relationship between item and user
 }
