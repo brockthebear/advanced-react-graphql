@@ -38,7 +38,6 @@ export default class CreateItem extends Component {
   handleChange = e => {
     const { name, type, value } = e.target;
     const val = type === 'number' ? parseFloat(value) : value;
-    console.log({ name, type, value });
     this.setState({ [name]: val });
   };
 
@@ -58,7 +57,7 @@ export default class CreateItem extends Component {
       image: file.secure_url,
       largeImage: file.eager[0].secure_url,
     });
-  }
+  };
 
   render() {
     return (
