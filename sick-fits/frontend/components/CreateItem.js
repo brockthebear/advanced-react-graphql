@@ -6,8 +6,8 @@ import Form from './styles/Form';
 import formatMoney from '../lib/formatMoney';
 import Error from './ErrorMessage';
 
-export const CREATE_ITEM_MUTATION = gql`
-  mutation CREATE_ITEM_MUTATION (
+const CREATE_ITEM_MUTATION = gql`
+  mutation CREATE_ITEM_MUTATION(
     $title: String!
     $description: String!
     $price: Int!
@@ -63,14 +63,16 @@ export default class CreateItem extends Component {
     return (
       <Mutation mutation={CREATE_ITEM_MUTATION} variables={this.state}>
         {(createItem, { loading, error, called, data }) => (
-          <Form onSubmit={async e => {
-            e.preventDefault(); // stop form from submitting
-            const res = await createItem(); // call mutation
-            Router.push({ // redirect to the newly created item's page
-              pathname: '/item',
-              query: { item: res.data.createItem.id },
-            });
-          }}>
+          <Form
+            onSubmit={async e => {
+              e.preventDefault(); // stop form from submitting
+              const res = await createItem(); // call mutation
+              Router.push({ // redirect to the newly created item's page
+                pathname: '/item',
+                query: { item: res.data.createItem.id },
+              });
+            }}
+          >
             <Error error={error} />
             <fieldset disabled={loading} aria-busy={loading}>
 

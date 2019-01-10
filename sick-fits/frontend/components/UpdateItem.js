@@ -7,7 +7,7 @@ import formatMoney from '../lib/formatMoney';
 import Error from './ErrorMessage';
 
 const SINGLE_ITEM_QUERY = gql`
-  query SINGLE_ITEM_QUERY ($id: ID!) {
+  query SINGLE_ITEM_QUERY($id: ID!) {
     item(where: { id: $id }) {
       id
       title
@@ -16,20 +16,9 @@ const SINGLE_ITEM_QUERY = gql`
     }
   }
 `;
-
 const UPDATE_ITEM_MUTATION = gql`
-  mutation UPDATE_ITEM_MUTATION (
-    $id: ID!
-    $title: String
-    $description: String
-    $price: Int
-  ) {
-    updateItem(
-      id: $id
-      title: $title
-      description: $description
-      price: $price
-    ) {
+  mutation UPDATE_ITEM_MUTATION($id: ID!, $title: String, $description: String, $price: Int) {
+    updateItem(id: $id, title: $title, description: $description, price: $price) {
       id
       title
       description
