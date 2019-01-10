@@ -19,18 +19,16 @@ const SINGLE_ITEM_QUERY = gql`
 
 const UPDATE_ITEM_MUTATION = gql`
   mutation UPDATE_ITEM_MUTATION (
+    $id: ID!
     $title: String
     $description: String
     $price: Int
-    $image: String
-    $largeImage: String
   ) {
     updateItem(
+      id: $id
       title: $title
       description: $description
       price: $price
-      image: $image
-      largeImage: $largeImage
     ) {
       id
       title
@@ -117,7 +115,7 @@ class UpdateItem extends Component {
 
                   </fieldset>
 
-                  <button type="submit">Save Changes</button>
+                  <button type="submit">Sav{loading ? 'ing' : 'e'} Changes</button>
                 </Form>
               )}
             </Mutation>
