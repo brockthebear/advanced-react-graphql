@@ -4,6 +4,10 @@
 # the line below imports all of our types from our datamodel. it is supposed to be commented out. it's weird.
 # import * from './generated/prisma.graphql'
 
+type SuccessMessage {
+  message: String
+}
+
 type Mutation {
   createItem(
     title: String,
@@ -30,6 +34,7 @@ type Mutation {
     email: String!
     password: String!
   ) : User!
+  signout: SuccessMessage
 }
 
 type Query {
