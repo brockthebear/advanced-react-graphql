@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const { randomBytes } = require('crypto');
 const { promisify } = require('util');
 const { transport, prettifyEmail } = require('../mail');
+const { hasPermission } = require('../utils');
 
 const Mutations = {
   async createItem(parent, args, ctx, info) {
@@ -165,6 +166,42 @@ const Mutations = {
     });
     // 8. Return the new User.
     return updatedUser;
+  },
+  async updatePermissions(parent, args, ctx, info) {
+    // 1. Check that the user is logged in.
+    if (!ctx.request.userId) {
+      throw new Error("You must be logged in to do that.");
+    }
+    // 2. Query the current user.
+    const currentUser = await ctx.db.query.user(
+      {
+        where: {
+          id: ctx.request.userId,
+        },
+      },
+      info
+    );
+    // 3. Check that the user has permission to perform operation.
+    hasPermission(currentUser, ['ADMIN', 'PERMISSIONUPDATE']);
+    // 4. Update the permissions.
+    return ctx.db.mutation.updateUser(
+      {
+        data: {
+          permissions: {
+            // { permissions: { set: { value } } } has to be used here instead of
+            // { permissions: args.permissions } because permissions is its own Enum.
+            set: args.permissions,
+          }
+        },
+        where: {
+          // use args.userId instead of ctx.request.userId
+          // because the user making the change might not be the user
+          // that the change is being applied to.
+          id: args.userId,
+        },
+      },
+      info
+    );
   },
 };
 
