@@ -26,6 +26,10 @@ type Mutation {
     password: String!,
     name: String!
   ) : User!
+  signin(
+    email: String!
+    password: String!
+  ) : User!
 }
 
 type Query {
