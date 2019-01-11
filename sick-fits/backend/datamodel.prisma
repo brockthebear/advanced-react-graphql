@@ -1,9 +1,22 @@
-# !Deploy to Prisma (npm run deploy) anytime the data model is changed.
+# !Deploy to Prisma (npm run deploy) anytime the data model (this file) is changed.
+
+enum Permission {
+  ADMIN
+  USER
+  ITEMCREATE
+  ITEMUPDATE
+  ITEMDELETE
+  PERMISSIONUPDATE
+}
 
 type User {
   id: ID! @unique
   name: String!
-  email: String!
+  email: String! @unique
+  password: String!
+  resetToken: String
+  resetTokenExpiry: String
+  permissions: [Permission]
 }
 
 type Item {
@@ -13,6 +26,7 @@ type Item {
   image: String
   largeImage: String
   price: Int!
+  user: User!
   # createdAt: DateTime!
   # updatedAt: DateTime!
   # user: User! # create relationship between item and user
