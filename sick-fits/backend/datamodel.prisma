@@ -26,6 +26,7 @@ type Item {
   image: String
   largeImage: String
   price: Int!
+  user: User!
   # createdAt: DateTime!
   # updatedAt: DateTime!
   # user: User! # create relationship between item and user
