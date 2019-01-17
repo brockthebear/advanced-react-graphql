@@ -28,7 +28,6 @@ const SEARCH_ITEMS_QUERY = gql`
 `;
 
 function routeToItem(item) {
-	console.log(item);
 	Router.push({
 		pathname: '/item',
 		query: {
