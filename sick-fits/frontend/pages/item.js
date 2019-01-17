@@ -1,8 +1,8 @@
 import SingleItem from '../components/SingleItem';
 
-const Item = props => (
+const Item = props => console.log('props query', props.query) || (
   <div>
-    <SingleItem id={props.query.item} />
+    <SingleItem id={props.query.id} />
   </div>
 );
 
