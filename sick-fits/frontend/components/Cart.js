@@ -3,6 +3,7 @@ import { Mutation, Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import { adopt } from 'react-adopt';
 import CartItem from './CartItem';
+import TakeMyMoney from './TakeMyMoney';
 import User from './User';
 import SickButton from './styles/SickButton';
 import CartStyles from './styles/CartStyles';
@@ -48,7 +49,11 @@ const Cart = () => {
             </ul>
             <footer>
               <p>{formatMoney(calcTotalPrice(me.cart))}</p>
-              <SickButton>Checkout</SickButton>
+              {me.cart.length && (
+                <TakeMyMoney>
+                  <SickButton>Checkout</SickButton>
+                </TakeMyMoney>
+              )}
             </footer>
           </CartStyles>
         )
