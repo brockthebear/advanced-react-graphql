@@ -7,8 +7,8 @@ const db = require('./db');
 
 const server = createServer();
 
- // Allow us to access all of the cookies as a formatted object (instead of just a cookie string that it comes in as in the header)
- server.express.use(cookierParser());
+// Allow us to access all of the cookies as a formatted object (instead of just a cookie string that it comes in as in the header)
+server.express.use(cookierParser());
 
 /**
  * MIDDLEWARE
