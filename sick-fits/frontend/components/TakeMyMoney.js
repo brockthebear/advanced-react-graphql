@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import Router from 'next/router';
 import StripeCheckout from 'react-stripe-checkout';
 import NProgress from 'nprogress';
 import calcTotalPrice from '../lib/calcTotalPrice';
-import Error from './ErrorMessage';
 import User, { CURRENT_USER_QUERY } from './User';
 
 const CREATE_ORDER_MUTATION = gql`
@@ -29,12 +27,19 @@ function totalItems(cart) {
 
 class TakeMyMoney extends React.Component {
 	onToken = async (res, createOrder) => {
-		await createOrder({
+		NProgress.start();
+		const order = await createOrder({
 			variables: {
 				token: res.id,
 			}
 		}).catch(err => {
 			alert(err.message);
+		});
+		Router.push({
+			pathname: '/order',
+			query: {
+				id: order.data.createOrder.id,
+			},
 		});
 	};
 
