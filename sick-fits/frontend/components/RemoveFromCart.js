@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Mutation } from 'react-apollo'
+import { Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import { CURRENT_USER_QUERY } from './User';
 
