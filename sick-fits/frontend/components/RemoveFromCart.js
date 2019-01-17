@@ -31,12 +31,10 @@ class RemoveFromCart extends Component {
 	// This gets called as soon as we get a response back from the server
 	// after a mutation has been performed.
 	update = (cache, payload) => {
-		console.log('running remove from cart update fn.');
 		// 1. Read the cache.
 		const data = cache.readQuery({
 			query: CURRENT_USER_QUERY
 		});
-		console.log('data ', data);
 		// 2. Remove that item from the cart.
 		const cartItemId = payload.data.removeFromCart.id;
 		data.me.cart = data.me.cart.filter(cartItem => cartItem.id !== cartItemId);
@@ -55,6 +53,13 @@ class RemoveFromCart extends Component {
 					id: this.props.id,
 				}}
 				update={this.update}
+				optimisticResponse={{
+					__typename: 'Mutation',
+					removeFromCart: {
+						__typename: 'CartItem',
+						id: this.props.id,
+					},
+				}}
 			>
 				{(removeFromCart, { loading, error }) => (
 					<BigButton
