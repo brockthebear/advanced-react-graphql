@@ -19,6 +19,9 @@ const DropDownItem = styled.div`
   img {
     margin-right: 10px;
   }
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const glow = keyframes`
