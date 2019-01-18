@@ -40,12 +40,6 @@
         "argsIgnorePattern": "res|next|^err"
       }
     ],
-    "prefer-const": [
-      "error",
-      {
-        "destructuring": "all",
-      }
-    ],
     "arrow-body-style": [
       2,
       "as-needed"
@@ -117,7 +111,7 @@
       {
         "trailingComma": "es5",
         "singleQuote": true,
-        "printWidth": 80,
+        "printWidth": 100
       }
     ],
     "jsx-a11y/href-no-hash": "off",
@@ -131,7 +125,6 @@
     ]
   },
   "plugins": [
-    // "html",
     "prettier"
   ]
 }
